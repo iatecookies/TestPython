@@ -60,14 +60,14 @@ class TestApplication(unittest.TestCase):
     #method2 Context manager, no need for extra argument
     def test_math_exp2(self):
         with mock.patch('math_floor.floor', return_value=3) as mocked_math_floor:
-            result = math_floor(x=3.4)        
+            result = math_floor(x=3.4)
             self.assertEqual(result, 3)
             self.assertRaises(TypeError, math_floor, 3)
 
             #using mock
             mocked_math_floor.floor(2.1)
             mocked_math_floor.floor.assert_called_once()
-
+            isinstance(mocked_math_floor,int)
 
 
     #method3 Inline, Cleaner way
