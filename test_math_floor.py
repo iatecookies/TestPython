@@ -3,6 +3,36 @@ from unittest import mock
 from math_floor import math_floor
 
 
+"""
+Hi Jun Fei,
+
+Mock is mainly used to test Classes and their methods without the need to actually call them. You can see more information about Mock here: https://docs.python.org/3/library/unittest.mock.html
+There are indeed various ways of using it and the way you choose depends on the tests you want to perform.
+
+The thing with your tests is that you are using Mock to test a simple function and not a Class and its methods. That is why you are probably confused.
+Most of the tests that you perform, although correct, do not need Mock at all.
+
+A proper way of using mock to test a function is to test if a module or method is called correctly inside your function like you do with "floor" from the "math" module.
+<See screenshot>
+
+
+The above mock test is based and your script and tests if the "math.floor" method is called properly.
+
+You can see another example of using mock to test if a method is called properly without actually calling it here:
+https://www.toptal.com/python/an-introduction-to-mocking-in-python
+
+Best regards,
+Ioannis
+
+"""
+class FloorTestCase(unittest.TestCase):
+    @mock.patch('math_floor.floor')
+    def test_math_exp(self, mock_math_floor):
+        mock_math_floor.floor(2.3)
+        mock_math_floor.floor.assert_called_once()
+        #mock_math_floor.assert_called_with(2.3)
+
+
 class TestApplication(unittest.TestCase):
     """
     A mock is a fake, stub or replacement of a class or object. It’s an object that has all properties and methods that you try to call on it, and it will always return a successful response. The trick is that it also keeps track on all methods called on it so that you can later assert the behavior done to your mocked object during your test.
@@ -47,7 +77,6 @@ class TestApplication(unittest.TestCase):
         result = math_floor(x=3.4)
         self.assertEqual(result, 3)
 
-        #this is same as line 48
         with self.assertRaises(TypeError):
             math_floor(2)
 
@@ -67,7 +96,7 @@ class TestApplication(unittest.TestCase):
             #using mock
             mocked_math_floor.floor(2.1)
             mocked_math_floor.floor.assert_called_once()
-            isinstance(mocked_math_floor,int)
+            #isinstance(mocked_math_floor,int)
 
 
     #method3 Inline, Cleaner way
