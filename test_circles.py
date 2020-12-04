@@ -2,7 +2,14 @@ import unittest
 from circles import circle_area
 from math import pi
 
-"todo run use python -m unittest or python -m unittest test_circles"
+"""
+todo run use python -m unittest or python -m unittest test_circles #test_*.py
+kan ook zonder unnittet door main__ bij te voegen
+
+if __name__ == '__main__':
+    unittest.main()
+
+"""
 
 
 class TestCircleArea (unittest.TestCase):
@@ -15,7 +22,6 @@ class TestCircleArea (unittest.TestCase):
     def test_values(self):
         # Make sure value errors are raised when neccesary
         self.assertRaises(ValueError, circle_area, -2)
-
 
     def test_types(self):
         # Make sure type errors are raised when neccesary
